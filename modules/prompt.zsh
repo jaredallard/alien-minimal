@@ -83,7 +83,7 @@ am_r_prompt_render(){
 }
 
 am_date() {
-  echo "%{$fg[grey]%}[%T]"
+  echo "%F{$AM_VENV_COLOR}[%T]%f"
 }
 
 am_l_prompt_render(){
