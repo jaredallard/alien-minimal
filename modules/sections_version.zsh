@@ -3,12 +3,7 @@
 # shellcheck disable=SC2154
 
 am_venv(){
-  __venv=$(plib_venv)
-  if [[ ${__venv} != "" ]];	then
-    echo -ne " %F{$AM_VENV_COLOR}$(plib_venv)%f"
-  else
-    echo -ne ""
-  fi
+  echo -ne "%F{$AM_VENV_COLOR}$(plib_venv)%f"
 }
 
 am_python_version(){
@@ -73,4 +68,12 @@ am_php_version(){
 
 am_php_short_version(){
   echo -ne "%F{$AM_PHP_COLOR}${AM_PHP_SYM}$(plib_php_major_minor_version)%f"
+}
+
+am_gradle_version(){
+  echo -ne "%F{$AM_GRADLE_COLOR}${AM_GRADLE_SYM}$(plib_gradle_version)%f"
+}
+
+am_maven_version(){
+  echo -ne "%F{$AM_MAVEN_COLOR}${AM_MAVEN_SYM}$(plib_maven_version)%f"
 }

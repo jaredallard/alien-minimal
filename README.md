@@ -1,25 +1,14 @@
-# alien-minimal 
-
-[![GitHub tag](https://img.shields.io/github/tag/eendroroy/alien-minimal.svg)](https://github.com/eendroroy/alien-minimal/tags)
-
-[![Contributors](https://img.shields.io/github/contributors/eendroroy/alien-minimal.svg)](https://github.com/eendroroy/alien-minimal/graphs/contributors)
-[![GitHub last commit (branch)](https://img.shields.io/github/last-commit/eendroroy/alien-minimal/master.svg)](https://github.com/eendroroy/alien-minimal)
-[![license](https://img.shields.io/github/license/eendroroy/alien-minimal.svg)](https://github.com/eendroroy/alien-minimal/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/eendroroy/alien-minimal.svg)](https://github.com/eendroroy/alien-minimal/issues)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/eendroroy/alien-minimal.svg)](https://github.com/eendroroy/alien-minimal/issues?q=is%3Aissue+is%3Aclosed)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/eendroroy/alien-minimal.svg)](https://github.com/eendroroy/alien-minimal/pulls)
-[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/eendroroy/alien-minimal.svg)](https://github.com/eendroroy/alien-minimal/pulls?q=is%3Apr+is%3Aclosed)
+# alien-minimal
 
 **alien-minimal** theme is faster than many other themes.
 
-**Why?** It updates part of the prompt asynchronously - the time consuming processing like git status checking,
-git dirty copy checking etc.
+**Why?** It updates part of the prompt asynchronously – the time-consuming processing like git status checking,
+git dirty copy checking and so on
 
-**How?** It starts a background job for these process, and in the mean time shows initial prompt and lets you use the
+**How?** It starts a background job for these processes, and in the meantime shows initial prompt and lets you use the
 terminal as you would normally.
 
 **alien-minimal** is **independent** of any library/framework like Oh-My-Zsh or Prezto.
-
 
 ## Installation
 
@@ -52,41 +41,95 @@ git clone --recurse-submodules https://github.com/eendroroy/alien-minimal.git ${
 # if lower version use
 cd ${ZSH_CUSTOM}/themes/alien-minimal
 git clone https://github.com/eendroroy/alien-minimal.git
-git submodule update --init --recursive
+git submodule update --init --recursive # --remote
 ```
 
 Then set `ZSH_THEME="alien-minimal/alien-minimal"` in the `~/.zshrc` file.
 
-## Asciicast (1.4.1)
-
-[![asciicast](http://asciinema.org/a/264037.svg)](https://asciinema.org/a/264037)
 
 ## Customizations
 
 **add configurations in `~/.amrc`**
 
-### VI prompt
+### Sections
 
-Enable VI prompt (vi-mode is enabled by `bindkey -v`)
+#### Available sections:
 
+- am_ssh_st
+- am_prompt_start_tag
+- am_prompt_dir
+- am_prompt_end_tag
+- am_venv
+- am_version_prompt
+- am_vcs_prompt
+- am_space
+
+#### `am_vcs_prompt` configuration
+
+Git:
+
+- am_git_symbol
+- am_git_rebasing
+- am_git_branch
+- am_git_left_right_master
+- am_git_commit_time
+- am_git_rev
+- am_git_stash
+- am_git_left_right
+- am_git_dirty
+
+Mercurial:
+
+- am_hg_symbol
+- am_hg_branch
+- am_hg_rev
+
+Subversion:
+
+- am_svn_symbol
+- am_svn_rev
+
+#### A sample sensible configuration
 ```bash
-export AM_ENABLE_VI_PROMPT=1
-```
+AM_VERSIONS_PROMPT=()
 
-#### Set vi prompt position
-```bash
+AM_GIT_SECTION=(
+  am_git_symbol
+  am_git_rebasing
+  am_git_branch
+  am_git_left_right_master
+  am_git_commit_time
+  am_git_rev
+  am_git_stash
+  am_git_left_right
+  am_git_dirty
+)
 
-export AM_VI_PROMPT_POS=left_start
-# (i) am-demo       G:master [1Y,9M] 6fd4c14 @1 + ⭑ ⭑ - - ?
+AM_HG_SECTION=(
+  am_hg_symbol
+  am_hg_branch
+  am_hg_rev
+)
 
-export AM_VI_PROMPT_POS=left_end
-# am-demo (i)       G:master [1Y,9M] 6fd4c14 @1 + ⭑ ⭑ - - ?
+AM_SVN_SECTION=(
+  am_svn_symbol
+  am_svn_rev
+)
 
-export AM_VI_PROMPT_POS=right_start
-# am-demo       (i) G:master [1Y,9M] 6fd4c14 @1 + ⭑ ⭑ - - ?
+AM_LEFT_SECTION=(
+  am_space
+  am_ssh_st
+  am_prompt_start_tag
+  am_prompt_dir
+  am_prompt_end_tag
+  am_venv
+  am_space
+)
 
-export AM_VI_PROMPT_POS=right_end
-# am-demo       G:master [1Y,9M] 6fd4c14 @1 + ⭑ ⭑ - - ? (i)
+AM_RIGHT_SECTION=(
+  am_version_prompt
+  am_vcs_prompt
+)
 ```
 
 ### Update left prompt asynchronously
@@ -133,15 +176,16 @@ _Note: if `AM_PROMPT_START_TAG` is empty, this configuration will be ignored._
 
 ### Show versions:
 
-Available version are: 
-`PYTHON` `PYTHON_S` `RUBY` `RUBY_S` `JAVA` `JAVA_S`
-`GO` `GO_S` `ELIXIR` `ELIXIR_S` `CRYSTAL` `CRYSTAL_S` `NODE` `NODE_S` `PHP` `PHP_S`
+Available version are:
+`PYTHON`,`PYTHON_S`,`RUBY`,`RUBY_S`,`JAVA`,`JAVA_S`,`GO`,`GO_S`,`ELIXIR`,`ELIXIR_S`,
+`CRYSTAL`,`CRYSTAL_S`,`NODE`,`NODE_S`,`PHP`,`PHP_S`,`GRADLE`,`MAVEN`
 
 ```bash
-export AM_VERSIONS_PROMPT=(RUBY PYTHON JAVA GO CRYSTAL NODE PHP ELIXIR)
+export AM_VERSIONS_PROMPT=(RUBY PYTHON JAVA GO CRYSTAL NODE PHP ELIXIR GRADLE)
 ```
 
 Customize Separator:
+
 ```bash
 export AM_VERSION_PROMPT_SEP='|'
 ```
@@ -154,7 +198,7 @@ _Note: Prompt maintain declaration order._
 export AM_DIR_EXPANSION_LEVEL=2
 ```
 
-**The effect may be un-noticeable on faster CPUs.**
+**The effect may be unnoticeable on faster CPUs.**
 
 ### Hide exit code:
 
@@ -177,9 +221,12 @@ export AM_KEEP_PROMPT=1
 1. export AM_THEME=soft
 1. export AM_THEME=default
 ```
+
 _Note: **Unset `AM_THEME` to use default color scheme.**_
 
 **Apart from these default themes, custom colors can be defined:**
+
+Use [previewer](https://eendroroy.github.io/alien-minimal/previewer/) to easily preview colors.
 
 ```bash
 export AM_VCS_COLOR=1          # color for VCS (G: M: V:)
@@ -198,8 +245,6 @@ export AM_PYTHON_COLOR=2       # color for python version text
 export AM_RUBY_COLOR=1         # color for ruby version text
 export AM_JAVA_COLOR=15        # color for java version text
 export AM_TIMER_COLOR=14       # color for command execution time
-export AM_VIINS_COLOR=39       # color for viins mode
-export AM_VICMD_COLOR=208      # color vicmd mode
 ```
 
 Or creating a new theme file:
@@ -225,9 +270,19 @@ am_theme(){
   AM_PYTHON_COLOR=40
   AM_RUBY_COLOR=196
   AM_JAVA_COLOR=178
+  AM_GO_COLOR=81
+  AM_ELIXIR_COLOR=81
+  AM_CRYSTAL_COLOR=8
+  AM_NODE_COLOR=2
+  AM_PHP_COLOR=5
+  AM_GRADLE_COLOR=2
+  AM_MAVEN_COLOR=3
   AM_TIMER_COLOR=248
-  AM_VIINS_COLOR=39
-  AM_VICMD_COLOR=208
+  AM_PROMPT_START_TAG_COLOR=39
+  AM_PROMPT_END_TAG_COLOR=39
+  AM_GIT_TRACKED_COLOR=78
+  AM_GIT_UN_TRACKED_COLOR=208
+  AM_LEFT_RIGHT_COLOR=252
 }
 ```
 
@@ -250,59 +305,34 @@ export AM_USE_NERD_FONT=1 # previously `USE_NERD_FONT`
 ### customize symbols
 
 ```bash
-export AM_JAVA_SYM='JAVA:'  # JAVA Version Symbol
-export AM_PY_SYM='PY:'      # Python Version Symbol
-export AM_RB_SYM='RB:'      # Ruby Version Symbol 
-export AM_GO_SYM='GO:'      # Go Version Symbol 
-export AM_ELIXIR_SYM='EX:'  # Elixir Version Symbol 
-export AM_CRYSTAL_SYM='CR:' # Crystal Version Symbol 
-export AM_NODE_SYM='NODE:'  # Node Version Symbol 
-export AM_PHP_SYM='PHP:'    # PHP Version Symbol 
-
-export AM_GIT_STASH_SYM='@'  # Git Stash Count Symbbol
-export AM_GIT_BARE_SYM='☢'   # Git bare repo Symbbol
-export AM_GIT_SYM=G          # Git Symbol
-export AM_HG_SYM=M           # Mercurial Symbol
-export AM_SSH_SYM=[S]        # SSH Indicator Symbol
-export AM_VIM_INSERT_SYM='[I]'  # VI mode symbol
-export AM_VIM_NORMAL_SYM='[N]'  # VI mode symbol
- 
-export AM_GIT_ADD_SYM='+'  # Git New Tracked File Symbol
-export AM_GIT_DEL_SYM='-'  # Git Deleted File Symbol
-export AM_GIT_MOD_SYM='*'  # Git Modified File Symbol
-export AM_GIT_NEW_SYM='?'  # Git New Un-tracked File Symbol
-export AM_GIT_PUSH_SYM='↑' # Git Un-pushed Commit Symbol
-export AM_GIT_PULL_SYM='↓' # Git New Commit Symbol
+export AM_GIT_STASH_SYM='@'
+export AM_GIT_BARE_SYM='☢'
+export AM_GIT_SYM='G'
+export AM_HG_SYM='H'
+export AM_SVN_SYM='S'
+export AM_SSH_SYM='[S]'
+export AM_JAVA_SYM='JAVA:'
+export AM_PY_SYM='PY:'
+export AM_RB_SYM='RB:'
+export AM_GO_SYM='GO:'
+export AM_ELIXIR_SYM='EX:'
+export AM_CRYSTAL_SYM='CR:'
+export AM_NODE_SYM='⬡ '
+export AM_PHP_SYM='PHP:'
+export AM_GRADLE_SYM='GRADLE:'
+export AM_MAVEN_SYM='MVN:'
+export AM_GIT_REBASING_SYMBOL='⇋'
+export AM_GIT_PUSH_SYM='↑'
+export AM_GIT_PULL_SYM='↓'
+export AM_LEFT_RIGHT_SEP='|'
 ```
+
 _Note: this overrides `AM_USE_NERD_FONT` configuration._
 
-### customize colors
-
-```bash
-export AM_GIT_TRACKED_COLOR=green
-export AM_GIT_UN_TRACKED_COLOR=red
-```
 ## Libraries Used
 
-- ['256color'](https://github.com/chrissicool/zsh-256color) by **[@chrissicool](https://github.com/chrissicool)**
 - ['zsh-async'](https://github.com/mafredri/zsh-async) by **[@mafredri](https://github.com/mafredri)**
 - ['promptlib-zsh'](https://github.com/eendroroy/promptlib-zsh) by **[@eendroroy](https://github.com/eendroroy)**
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at [alien-minimal](https://github.com/eendroroy/alien-minimal)
-repository. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to
-adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-  1. Fork it ( https://github.com/eendroroy/alien-minimal/fork )
-  1. Create your feature branch (`git checkout -b my-new-feature`)
-  1. Commit your changes (`git commit -am 'Add some feature'`)
-  1. Push to the branch (`git push origin my-new-feature`)
-  1. Create a new Pull Request
-
-## Author
-
-* **indrajit** - *Owner* - [eendroroy](https://github.com/eendroroy)
 
 ## License
 

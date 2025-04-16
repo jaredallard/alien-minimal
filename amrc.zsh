@@ -3,17 +3,19 @@
 ## ===> THEME
 #  export AM_THEME=default
 
+## ===> SECTIONS
+#  export AM_VERSIONS_PROMPT=()
+#  export AM_GIT_SECTION=(am_git_symbol am_git_rebasing am_git_branch am_git_left_right_master am_git_commit_time am_git_rev am_git_stash am_git_left_right am_git_dirty)
+#  export AM_HG_SECTION=(am_hg_symbol am_hg_branch am_hg_rev)
+#  export AM_SVN_SECTION=(am_svn_symbol am_svn_rev)
+#  export AM_LEFT_SECTION=(am_space am_prompt_dir am_space)
+#  export AM_RIGHT_SECTION=(am_version_prompt am_vcs_prompt)
+
 ## ===> CONFIGS
 #  export AM_ASYNC_L_PROMPT=1
 #  export AM_INITIAL_LINE_FEED=0
 #  export AM_USE_NERD_FONT=1
 #  export AM_DIR_EXPANSION_LEVEL=1
-
-## ===> VI PROMPT
-#  export AM_ENABLE_VI_PROMPT=1
-#  export AM_VIM_INSERT_SYM='(i)'
-#  export AM_VIM_NORMAL_SYM='(n)'
-#  export AM_VI_PROMPT_POS='left_end'
 
 ## ===> SYMBOLS
 #  export AM_VERSION_PROMPT_SEP='|'
@@ -58,9 +60,8 @@
 #  export AM_CRYSTAL_COLOR=8
 #  export AM_NODE_COLOR=2
 #  export AM_PHP_COLOR=5
+#  export AM_GRADLE_COLOR=5
 #  export AM_TIMER_COLOR=248
-#  export AM_VIINS_COLOR=39
-#  export AM_VICMD_COLOR=208
 #  export AM_PROMPT_START_TAG_COLOR=39
 #  export AM_PROMPT_END_TAG_COLOR=39
 #  export AM_GIT_TRACKED_COLOR=78
